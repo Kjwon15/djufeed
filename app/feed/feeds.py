@@ -20,13 +20,17 @@ session.headers.update({
 
 
 @cache(60 * 5)  # Cache 5 minutes
-def get_content(url, xpath):
+def get_content(url, xpath, encoding=None):
 
     resp = session.get(url)
-    tree = html.fromstring(resp.content.decode(resp.apparent_encoding))
+    tree = html.fromstring(
+        resp.content.decode(
+            encoding or resp.apparent_encoding
+        ))
     return etree.tostring(
         tree.xpath(xpath)[0]
     ).decode()
+
 
 def postg_notifications(location):
     url = 'http://office.dju.kr/postg/board/board1.htm'
@@ -49,11 +53,19 @@ def postg_notifications(location):
         date = datetime.strptime(date, '%Y-%m-%d')
         link = tr.xpath('td[2]/a')[0].attrib['href']
 
+        content = get_content(
+            link,
+            '//*/table//table//table//table//table//table',
+            encoding='cp949'
+        )
+
         feed.add(
             title='{}{} {}'.format(number, ' [new]' if is_new else '', title),
             author=author,
             url=link,
             updated=date,
+            content=content,
+            content_type='html',
         )
 
     return feed.to_string()
