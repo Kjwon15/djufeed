@@ -8,7 +8,7 @@ import requests
 
 from flask import Blueprint, Response, url_for
 
-from .utils import cache
+from ..decorators import cache
 
 
 app = Blueprint('calendar', __name__)

@@ -7,6 +7,8 @@ from pyatom import AtomFeed
 from lxml import etree, html
 from fake_useragent import FakeUserAgent
 
+from ..decorators import cache
+
 ua = FakeUserAgent()
 
 localzone = pytz.timezone('Asia/Seoul')
@@ -17,6 +19,7 @@ session.headers.update({
 })
 
 
+@cache(60 * 5)  # Cache 5 minutes
 def get_content(url, xpath):
 
     resp = session.get(url)
