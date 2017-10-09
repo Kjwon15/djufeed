@@ -1,4 +1,4 @@
-from flask import Blueprint, Response, url_for
+from flask import Blueprint, Response, request, url_for
 from . import feeds
 
 app = Blueprint('feed', __name__)
@@ -12,7 +12,7 @@ def get_links():
 
 @app.route('/postg_notifications')
 def postg_notifications():
-    feed = feeds.postg_notifications()
+    feed = feeds.postg_notifications(request.url)
     return Response(
         feed,
         mimetype='application/xml')
