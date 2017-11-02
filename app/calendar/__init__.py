@@ -149,7 +149,7 @@ def make_postgcal():
 
 
 def make_session():
-    ua = fake_useragent.UserAgent()
+    ua = fake_useragent.UserAgent(fallback='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36')  # noqa
     session = requests.session()
-    session.headers['User-Agent'] = ua.Chrome
+    session.headers['User-Agent'] = ua.best_browser
     return session

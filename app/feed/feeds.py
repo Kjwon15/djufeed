@@ -8,13 +8,15 @@ import requests
 
 from ..decorators import cache
 
-ua = FakeUserAgent()
+ua = FakeUserAgent(
+    fallback='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'  # noqa
+)
 
 localzone = pytz.timezone('Asia/Seoul')
 
 session = requests.session()
 session.headers.update({
-    'User-Agent': ua.chrome,
+    'User-Agent': ua.best_browser,
 })
 
 
