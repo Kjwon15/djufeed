@@ -1,12 +1,14 @@
 [[source]]
+
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
+
 [packages]
 
 flask = "*"
-"fake-useragent" = "*"
+fake-useragent = "*"
 icalendar = "*"
 lxml = "*"
 requests = "*"
@@ -16,5 +18,7 @@ pytz = "*"
 
 
 [dev-packages]
+
 "flake8" = "*"
 honcho = "*"
+"flake8-import-order-spoqa" = "*"

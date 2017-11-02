@@ -1,11 +1,10 @@
-import requests
-import pytz
-
 from datetime import datetime
 
-from pyatom import AtomFeed
-from lxml import etree, html
 from fake_useragent import FakeUserAgent
+from lxml import etree, html
+from pyatom import AtomFeed
+import pytz
+import requests
 
 from ..decorators import cache
 

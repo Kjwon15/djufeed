@@ -2,11 +2,10 @@ import datetime
 import re
 
 import fake_useragent
+from flask import Blueprint, Response, url_for
 import icalendar
 import lxml.html
 import requests
-
-from flask import Blueprint, Response, url_for
 
 from ..decorators import cache
 
