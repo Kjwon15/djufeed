@@ -34,7 +34,7 @@ def get_content(url, xpath, encoding=None):
 
 
 def postg_notifications(location):
-    url = 'http://office.dju.kr/postg/board/board1.htm'
+    url = 'http://office.dju.ac.kr/postg/board/board1.htm'
     resp = session.get(url)
     tree = html.fromstring(resp.content.decode(resp.apparent_encoding))
     tree.make_links_absolute(url)

@@ -113,7 +113,8 @@ def make_djucal():
 def make_postgcal():
     session = make_session()
 
-    resp = session.get('http://office.dju.kr/postg/schedule/schedule1_04.htm')
+    resp = session.get(
+        'http://office.dju.ac.kr/postg/schedule/schedule1_04.htm')
     tree = lxml.html.fromstring(resp.content.decode('cp949'))
 
     cal = icalendar.Calendar()
